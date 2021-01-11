@@ -27,20 +27,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql="create table "+tableQuotes+"(id integer PRIMARY KEY AUTOINCREMENT, author varchar(50), quote text)";
         db.execSQL(sql);
-        db.close();
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sql="drop table ";
-        db.close();
+
     }
 
     public void deleteQuote(int quoteId){
         SQLiteDatabase db=getWritableDatabase();
         String sql="delete from "+tableQuotes+" where id = '"+quoteId+"' ";
         db.execSQL(sql);
-        db.close();
+
     }
 
     public void insertIntoQuotes(Quote quote){
@@ -48,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db=getWritableDatabase();
         String sql="insert into "+tableQuotes+" (author,quote)values('"+quote.getAuthor()+"','"+quote.getQuote()+"')";
         db.execSQL(sql);
-        db.close();
+
     }
 
     public ArrayList<Quote> getAllQuotes(){
@@ -68,8 +68,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         }catch(Exception e){
             Log.e("AWAIS", "printQuotes: "+e.getMessage() );
+
+            return null;
         }
-        db.close();
+
         return quotes;
     }
 
@@ -94,6 +96,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }catch(Exception e){
             Log.e("AWAIS", "printQuotes: "+e.getMessage() );
         }
-        db.close();
+
     }
 }
