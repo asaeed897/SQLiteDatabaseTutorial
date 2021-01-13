@@ -40,13 +40,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db=getWritableDatabase();
         String sql="delete from "+tableQuotes+" where id = '"+quoteId+"' ";
         db.execSQL(sql);
-
     }
 
     public void insertIntoQuotes(Quote quote){
 
         SQLiteDatabase db=getWritableDatabase();
         String sql="insert into "+tableQuotes+" (author,quote)values('"+quote.getAuthor()+"','"+quote.getQuote()+"')";
+        db.execSQL(sql);
+
+    }
+
+    public void updateQuote(Quote quote){
+
+        SQLiteDatabase db=getWritableDatabase();
+        String sql="UPDATE "+tableQuotes+
+                " SET author = '"+quote.getAuthor()+"', quote ='"+quote.getQuote()+"'" +
+                "WHERE id = "+quote.getId()+"";
         db.execSQL(sql);
 
     }

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(name.getText().length() != 0 && quote.getText().length() != 0) {
                     helper.insertIntoQuotes(new Quote(name.getText().toString(), quote.getText().toString()));
-                    Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                     name.setText("");
                     quote.setText("");
                 }
@@ -51,5 +51,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+        System.exit(0);
+    }
 }
